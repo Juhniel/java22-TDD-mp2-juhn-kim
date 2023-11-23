@@ -3,6 +3,9 @@ package com.juhnkim;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PrimeTest {
@@ -10,7 +13,6 @@ class PrimeTest {
     /**
      * CONSTRUCTOR TESTS
      */
-
     @Test
     @DisplayName("Test initializing constructor")
     void testConstructorInitializer() {
@@ -60,8 +62,43 @@ class PrimeTest {
     }
 
     /**
-     * CONSTRUCTOR TESTS
+     *  GETTERS & SETTERS TESTS
      */
+    @Test
+    @DisplayName("Test getPrimes for a valid range")
+    void testGetPrimes() {
+        Prime prime = new Prime(10, 20);
+        List<Integer> expectedPrimes = Arrays.asList(11, 13, 17, 19);
+        assertEquals(expectedPrimes, prime.getPrimes());
+    }
+
+    @Test
+    @DisplayName("Test count of primes for a known range")
+    void testCountOfPrimes() {
+        Prime prime = new Prime(0, 10);
+        assertEquals(4, prime.getCount());
+    }
+
+    @Test
+    @DisplayName("Test sum of primes for a known range")
+    void testSumOfPrimes() {
+        Prime prime = new Prime(0, 10);
+        int expectedSum = 2 + 3 + 5 + 7;
+        assertEquals(expectedSum, prime.getSumOfPrimes());
+    }
+
+    /**
+     *  PRINT TESTS
+     */
+
+//    @Test
+//    @DisplayName("Test print count")
+//    void testPrintCount() {
+//        Prime prime = new Prime(0, 1000);
+//        assertEquals("Hej, det finns " + prime.getCount() +
+//                " primtal mellan 0 och 1000!", prime.printCount());
+//    }
+
 
 
 }

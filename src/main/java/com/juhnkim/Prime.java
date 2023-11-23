@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Prime {
 
-    private List<Integer> primes;
+    private final List<Integer> primes;
     private int count = 0;
     private int sumOfPrimes = 0;
 
@@ -24,12 +24,15 @@ public class Prime {
     }
 
     private boolean numIsPrime(int current, int depth) {
-
         if(current <= 1) {
             return false;
         }
 
-        if (depth >= primes.size()) {
+//        if (depth >= primes.size()) {
+//            return true;
+//        }
+
+        if(depth > Math.sqrt(current)) {
             return true;
         }
 
@@ -65,7 +68,6 @@ public class Prime {
     public int getSumOfPrimes() {
         return sumOfPrimes;
     }
-
 
     public void printCount() {
         System.out.println("Hej, det finns " + getCount() + " primtal mellan 0 och 1000!");
