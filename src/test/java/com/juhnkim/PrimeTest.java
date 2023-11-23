@@ -58,7 +58,7 @@ class PrimeTest {
         assertTrue(primeAtZero.getPrimes().isEmpty());
 
         Prime primeAtMax = new Prime(1000, 1000);
-        assertEquals(1, primeAtMax.getPrimes().size());
+        assertEquals(0, primeAtMax.getPrimes().size());
     }
 
     /**

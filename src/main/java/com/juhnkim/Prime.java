@@ -19,6 +19,7 @@ public class Prime {
         if (firstNumber > lastNumber) {
             throw new IllegalArgumentException("First number must be less than or equal to last number");
         }
+
         primes = new ArrayList<>();
         calculatePrimes(firstNumber, lastNumber);
     }
@@ -28,11 +29,17 @@ public class Prime {
             return false;
         }
 
-//        if (depth >= primes.size()) {
-//            return true;
-//        }
+        if (current % 2 == 0) {
+            return current == 2;
+        }
 
-        if(depth > Math.sqrt(current)) {
+        for (int i = 3; i <= Math.sqrt(current); i += 2) {
+            if (current % i == 0) {
+                return false;
+            }
+        }
+
+        if (depth >= primes.size()) {
             return true;
         }
 
@@ -40,9 +47,10 @@ public class Prime {
         if (current % divisibleBy == 0) {
             return false;
         }
-
         return numIsPrime(current, ++depth);
     }
+
+
 
     private void calculatePrimes(int current, int stop) {
         if (current > stop) {
@@ -75,6 +83,15 @@ public class Prime {
 
     public void printSum() {
         System.out.println("Och den totala summan av dessa primtal är " + getSumOfPrimes());
+    }
+
+
+    public static void main(String[] args) {
+//        Prime prime = new Prime(0, 10);
+//        System.out.println(prime.getPrimes());
+
+        Prime prime = new Prime(0, 30);
+        System.out.println(prime.getPrimes());
     }
 }
 
