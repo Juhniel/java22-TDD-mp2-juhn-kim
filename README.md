@@ -47,4 +47,4 @@ this approach ensures that the internal implementation details of the Prime clas
 
 # Test case
 
-![tests.png](..%2F..%2FDesktop%2Ftests.png)
+![tests.png](tests.png)
