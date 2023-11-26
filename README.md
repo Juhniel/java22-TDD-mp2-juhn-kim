@@ -29,3 +29,18 @@ The tests covers the following features of the 'Prime' class:
 
 # Reflection and Conclusion 
 
+Reflecting on the refactoring and testing process for the original 'Prime' class where I identified areas for improvement and 
+enhancing readability.
+
+The original code had complex recursive logic, especially in the numIsPrime() method, which was refactored for better clarity and 
+corrected logic. 
+
+Regarding the tests I covered a wide range of scenarios but strategically did not include tests for null values or data type validation.
+Since the implementation of the constructors and methods do not accept or return values where null or data type mismatch might occur.
+
+I also skipped testing printSum() and printCount() method since the focus was rather on the getter methods. Since the print methods
+only show text and the importance of the method is making sure that the getters methods are displayed correctly.
+
+The tests for the prime logic was tested more indirectly since the methods were private to the 'Prime' class.
+By testing the private prime number logic indirectly through the public interface, 
+this approach ensures that the internal implementation details of the Prime class remain encapsulated.
