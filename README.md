@@ -44,3 +44,7 @@ only show text and the importance of the method is making sure that the getters 
 The tests for the prime logic was tested more indirectly since the methods were private to the 'Prime' class.
 By testing the private prime number logic indirectly through the public interface, 
 this approach ensures that the internal implementation details of the Prime class remain encapsulated.
+
+# Test case
+
+![tests.png](..%2F..%2FDesktop%2Ftests.png)
