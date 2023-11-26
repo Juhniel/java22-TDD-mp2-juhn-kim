@@ -17,9 +17,7 @@ class PrimeTest {
     @DisplayName("Test initializing constructor")
     void testConstructorInitializer() {
         Prime prime = new Prime(0, 1000);
-        // Check that the prime object is not null
         assertNotNull(prime.getPrimes());
-        // Check if the prime list is empty
         assertFalse(prime.getPrimes().isEmpty());
     }
 
@@ -37,19 +35,19 @@ class PrimeTest {
     }
 
     @Test
-    @DisplayName("Test initializing constructor with a invalid range")
-    void testConstructorForInvalidRange() {
-        assertThrows(IllegalArgumentException.class, () -> new Prime(-1, 1000));
-        assertThrows(IllegalArgumentException.class, () -> new Prime(0, 1001));
-        assertThrows(IllegalArgumentException.class, () -> new Prime(-20, 2000));
+    @DisplayName("Test specific exception message for invalid range")
+    void testExceptionMessageForInvalidRange() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Prime(-1, 1000));
+        assertEquals("Hoppsan, fel intervall angivet!", exception.getMessage());
     }
 
     @Test
-    @DisplayName("Test initializing constructor with inverted range")
-    void testConstructorThrowsExceptionForInvertedRange() {
-        assertThrows(IllegalArgumentException.class, () -> new Prime(1000, 0));
-        assertThrows(IllegalArgumentException.class, () -> new Prime(500, 100));
+    @DisplayName("Test specific exception message for inverted range")
+    void testExceptionMessageForInvertedRange() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Prime(1000, 0));
+        assertEquals("Hoppsan, fel intervall angivet!", exception.getMessage());
     }
+
 
     @Test
     @DisplayName("Test initializing constructor for boundary values")
@@ -73,6 +71,23 @@ class PrimeTest {
     }
 
     @Test
+    @DisplayName("Test getPrimes for a valid lower bound range")
+    void testGetPrimesLowerInterval() {
+        Prime prime = new Prime(0, 100);
+        List<Integer> expectedPrimes = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37,
+                41, 43,47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97);
+        assertEquals(expectedPrimes, prime.getPrimes());
+    }
+
+    @Test
+    @DisplayName("Test getPrimes for a valid upper bound range")
+    void testGetPrimesUpperInterval() {
+        Prime prime = new Prime(900, 1000);
+        List<Integer> expectedPrimes = Arrays.asList(907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997);
+        assertEquals(expectedPrimes, prime.getPrimes());
+    }
+
+    @Test
     @DisplayName("Test count of primes for a known range")
     void testCountOfPrimes() {
         Prime prime = new Prime(0, 10);
@@ -87,18 +102,34 @@ class PrimeTest {
         assertEquals(expectedSum, prime.getSumOfPrimes());
     }
 
-    /**
-     *  PRINT TESTS
-     */
+    @Test
+    @DisplayName("Test for extreme lower limit")
+    void testExtremeLowerLimit() {
+        Prime prime = new Prime(0, 2);
+        assertEquals(List.of(2), prime.getPrimes());
+    }
 
-//    @Test
-//    @DisplayName("Test print count")
-//    void testPrintCount() {
-//        Prime prime = new Prime(0, 1000);
-//        assertEquals("Hej, det finns " + prime.getCount() +
-//                " primtal mellan 0 och 1000!", prime.printCount());
-//    }
+    @Test
+    @DisplayName("Test for extreme upper limit")
+    void testExtremeUpperLimit() {
+        Prime prime = new Prime(998, 1000);
+        assertTrue(prime.getPrimes().isEmpty());
+    }
 
+    @Test
+    @DisplayName("Test range with no primes")
+    void testRangeWithNoPrimes() {
+        Prime prime = new Prime(24, 25);
+        assertTrue(prime.getPrimes().isEmpty());
+    }
 
+    @Test
+    @DisplayName("Test single prime")
+    public void testSingleNumberRange() {
+        Prime prime = new Prime(7, 7);
+        assertNotNull(prime.getPrimes());
+        assertEquals(1, prime.getCount());
+        assertEquals(7, prime.getSumOfPrimes());
+    }
 
 }
